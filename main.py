@@ -38,15 +38,15 @@ with Listener(on_click=on_click) as listener:
 print(Data.tl, Data.br)
 
 im = ImageGrab.grab(bbox=Data.tl + Data.br)
-para = pytesseract.image_to_string(im)
-print(para.strip("|"))
+para = pytesseract.image_to_string(im).replace("|", "I").replace("\n", " ")
+print(para)
 im.show()
 
 keyboard = Controller()
 time.sleep(3)
 for c in para:
     keyboard.press(c)
-    time.sleep(0.1)
+    time.sleep(0.01)
 
 
 
